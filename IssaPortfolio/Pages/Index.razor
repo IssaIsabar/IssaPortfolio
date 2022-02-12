@@ -1,0 +1,60 @@
+﻿@page "/"
+@inject NavigationManager nav;
+
+<PageTitle>Issa's Portfolio</PageTitle>
+
+<h1>Welcome to my portfolio</h1>
+
+<br />
+
+<input class="input" @bind="name" type="text" placeholder="What's your name?'" />
+
+<input class="inputBox" @onclick="Ok" type="button" value="Ok" />
+
+<br />
+
+@if (name is not null){
+    <span class="@className">Hello @name</span>
+}
+
+@code {
+
+    string? name;
+
+    string className = "blackStyle";
+
+    string realName = "Issa";
+
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        nav.NavigateTo("/portfolio");
+
+        base.OnAfterRender(firstRender);    
+    }
+
+    void Ok()
+    {
+        if (name is not null)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                className = "default";
+            }
+            else
+            {
+                if (name.ToLower().Equals(realName.ToLower()))
+                {
+                    className = "correct";
+                }
+                else
+
+                    className = "wrong";
+            }
+        }
+        if (className == "correct")
+        {
+
+        }
+    }
+}
