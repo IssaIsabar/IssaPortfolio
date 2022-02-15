@@ -2,46 +2,52 @@
 @inject PortfolioService PortfolioService;
 @using IssaPortfolio.Library;
 
-<h3>Portfolio</h3>
-<span>@message</span>
-<br />
-<input class="input" @bind="itemName" type="text" placeholder="Name of item: " />
-<br />
-<input class="input" @bind="description" type="text" placeholder="Description: " />
-<br />
-<input class="input" @bind="imageUrl" type="text" placeholder="Image url: " />
-<br />
-<input class="inputBox" type="button" value="Add" @onclick="async () =>
-{
+<head>
+    <title>Portfolio</title>
+</head>
+<body>
+    <h1>PortfolioList</h1>
+    <br />
+    <input class="input" @bind="itemName" type="text" placeholder="Name of item: " />
+    <br />
+    <input class="input" @bind="description" type="text" placeholder="Description: " />
+    <br />
+    <input class="input" @bind="imageUrl" type="text" placeholder="Image url: " />
+    <br />
+    <input class="inputBox" type="button" value="Add" @onclick="async () =>
+    {
     await PortfolioService.AddPortfolioItem(itemName, description, imageUrl);
+    itemName=string.Empty;
+    description=string.Empty;
+    imageUrl=string.Empty;
     items = await PortfolioService.LoadPortfolioItems();
 
-}" />
-
-<hr />
-    @foreach (var item in items)
-{
-    <div>
-        <h3>@item.Name</h3>
-        <p>@item.Description</p>
-        <div class="media-img-wrapper mr-2">
-            <img class="media-img" src="@item.ImageUrl" alt="@item.Name" />
-        </div>
-        <br />
-        <input type="button" value="Delete" @onclick="async () =>
-            {
-                await PortfolioService.DeleteItem(item.Id);
-                items = await PortfolioService.LoadPortfolioItems();
-            }" />
-    </div>
+    }" />
+    <span>@message</span>
     <hr />
-}
+    @foreach (var item in items)
+    {
+        <div class="card text-center" style="width: 18rem;">
+            <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name">
+            <div class="card-body">
+                <h5 class="card-title">@item.Name</h5>
+                <p class="card-text">@item.Description</p>
+                <input type="button" value="Delete" @onclick="async () =>
+            {
+            await PortfolioService.DeleteItem(item.Id);
+            items = await PortfolioService.LoadPortfolioItems();
+            }" />
+            </div>
+        </div>
+    }
+    <hr />
+</body>
 
 @code {
     List<PortfolioItem>? items = new List<PortfolioItem>();
 
     string? itemName, description, imageUrl, message;
-    string defaultEmptyMessage = "Some or all inputs are empty";
+    string defaultEmptyMessage = "Successful";
 
     protected override async Task OnInitializedAsync()
     {
