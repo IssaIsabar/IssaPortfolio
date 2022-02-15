@@ -1,6 +1,5 @@
 ﻿using IssaPortfolio.Library;
 using IssaPortfolio.Services.PortfolioService;
-using RestSharp;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -14,7 +13,7 @@ namespace IssaPortfolio.Services.PortfolioService
 
         public PortfolioService()
         {
-    
+
         }
 
         public async Task<List<PortfolioItem>?> LoadPortfolioItems()
@@ -31,7 +30,6 @@ namespace IssaPortfolio.Services.PortfolioService
                 Console.WriteLine("Message :{0} ", e.Message);
             }
             return null;
-            // PortfolioItems = await _http.GetFromJsonAsync<List<PortfolioItem>>("api/PortfolioItem");
         }
         public async Task AddPortfolioItem(string name, string desc, string imgUrl)
         {
@@ -40,22 +38,25 @@ namespace IssaPortfolio.Services.PortfolioService
                 var item = new PortfolioItem(name, desc, imgUrl);
 
                 using (var _http = new HttpClient())
-                { 
-                    await _http.PostAsJsonAsync("api/PortfolioItem/postportfolio", item);
+                {
+                    await _http.PostAsJsonAsync("https://localhost:7142/api/PortfolioItem/postportfolio", item);
                 }
+            }
+        }
+        public async Task DeleteItem(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                await client.DeleteAsync("https://localhost:7142/api/PortfolioItem/deletePortfolio/" + id);
             }
         }
     }
 }
-//    public void DeleteItem(PortfolioItem item)
-//    {
-//        Storage.Items.Remove(item);
-//    }
 
-//    void UpdateItem(PortfolioItem item)
-//    {
+//void UpdateItem(PortfolioItem item)
+//{
 
-//    }
+//}
 //}
 
 

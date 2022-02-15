@@ -20,5 +20,11 @@ namespace WebAPI.Services.PortfolioService
             await _context.PortfolioItems.AddAsync(item);
             await _context.SaveChangesAsync();
         }
+        public async Task DeletePortfolioItem(int id)
+        {
+            PortfolioItem? item = _context.PortfolioItems.Where(x => x.Id == id).FirstOrDefault();
+            _context.PortfolioItems.Remove(item);
+            await _context.SaveChangesAsync();
+        }
     }
 }

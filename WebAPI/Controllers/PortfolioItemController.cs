@@ -31,8 +31,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> RandomMethod()
+        [Route("deletePortfolio/{id}")]
+        public async Task<IActionResult> DeletePortfolioItem([FromRoute] int id)
         {
+            await _portfolioService.DeletePortfolioItem(id);
             return Ok();
         }
 

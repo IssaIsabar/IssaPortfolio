@@ -7,6 +7,7 @@ namespace WebAPI.Services.PortfolioService
     {
         Task<List<PortfolioItem>> GetPortfolioItems();
         Task CreatePortfolioItem(PortfolioItem item);
+        Task DeletePortfolioItem(int id);
 
 
     }
