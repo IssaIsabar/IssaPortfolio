@@ -5,9 +5,9 @@ namespace IssaPortfolio.Services.PortfolioService
 {
     public interface IPortfolioService
     {
-        Task LoadPortfolioItems();
+        Task<List<PortfolioItem>?> LoadPortfolioItems();
+        Task DeleteItem(int id);
         Task AddPortfolioItem(string name, string desc, string imgUrl);
-        List<PortfolioItem> PortfolioItems { get; set; }
 
     }
 }

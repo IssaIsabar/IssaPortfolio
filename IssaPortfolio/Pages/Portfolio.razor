@@ -1,14 +1,10 @@
 ﻿@page "/portfolio"
-@inject PortfolioService PortfolioService;
+@inject IPortfolioService PortfolioService;
 @using IssaPortfolio.Library;
-
-<head>
-    <title>Portfolio</title>
-</head>
-<body>
+<div class="mx-auto">
     <h1>PortfolioList</h1>
     <br />
-    <input class="input" @bind="itemName" type="text" placeholder="Name of item: " />
+    @*<input class="input" @bind="itemName" type="text" placeholder="Name of item: " />
     <br />
     <input class="input" @bind="description" type="text" placeholder="Description: " />
     <br />
@@ -21,8 +17,7 @@
     description=string.Empty;
     imageUrl=string.Empty;
     items = await PortfolioService.LoadPortfolioItems();
-
-    }" />
+    }" />*@
     <span>@message</span>
     <hr />
     @foreach (var item in items)
@@ -41,8 +36,7 @@
         </div>
     }
     <hr />
-</body>
-
+</div>
 @code {
     List<PortfolioItem>? items = new List<PortfolioItem>();
 

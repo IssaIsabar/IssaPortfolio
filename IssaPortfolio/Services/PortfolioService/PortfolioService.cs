@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace IssaPortfolio.Services.PortfolioService
 {
-    public class PortfolioService
+    public class PortfolioService : IPortfolioService
     {
 
         public PortfolioService()

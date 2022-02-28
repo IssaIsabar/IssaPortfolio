@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IssaPortfolio", "IssaPortfo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "..\WebAPI\WebAPI.csproj", "{719B5038-9A9A-4758-A8EE-4D47FE38342D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IssaPortfolio.Library", "..\IssaPortfolio.Library\IssaPortfolio.Library.csproj", "{7F7CCCE2-D798-4B0F-963E-40B7905BBA7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IssaPortfolio.Library", "..\IssaPortfolio.Library\IssaPortfolio.Library.csproj", "{7F7CCCE2-D798-4B0F-963E-40B7905BBA7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

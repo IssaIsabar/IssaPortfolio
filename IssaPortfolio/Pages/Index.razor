@@ -2,18 +2,16 @@
 @inject NavigationManager nav;
 
 <PageTitle>Issa's Portfolio</PageTitle>
+<div style="text-align: center">
+    <h1>Welcome to my portfolio</h1>
+    <br />
+    <input class="input" @bind="name" type="text" placeholder="What's your name?'" />
+    <input class="inputBox" @onclick="Ok" type="button" value="Ok" />
+    <br />
+</div>
 
-<h1>Welcome to my portfolio</h1>
-
-<br />
-
-<input class="input" @bind="name" type="text" placeholder="What's your name?'" />
-
-<input class="inputBox" @onclick="Ok" type="button" value="Ok" />
-
-<br />
-
-@if (name is not null){
+@if (name is not null)
+{
     <span class="@className">Hello @name</span>
 }
 
@@ -26,12 +24,12 @@
     string realName = "Issa";
 
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        nav.NavigateTo("/portfolio");
+    //protected override void OnAfterRender(bool firstRender)
+    //{
+    //    nav.NavigateTo("/portfolio");
 
-        base.OnAfterRender(firstRender);    
-    }
+    //    base.OnAfterRender(firstRender);
+    //}
 
     void Ok()
     {
