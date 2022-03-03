@@ -1,0 +1,28 @@
+﻿@page "/login"
+@inject ILocalStorageService LocalStorage
+@using IssaPortfolio.Library
+
+<br />
+<h3>Login</h3>
+
+<EditForm Model="user" OnSubmit="HandleLogin">
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input id="username" class= "form-control" @bind-value="user.Username">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" @bind="user.Password" type="password" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    private User user = new User();
+
+    private async void HandleLogin()
+    {
+        Console.WriteLine("Log me in!");
+        await LocalStorage.SetItemAsync<string>("username", user.Username);
+    }
+}
