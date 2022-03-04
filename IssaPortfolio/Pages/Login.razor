@@ -1,5 +1,7 @@
 ﻿@page "/login"
 @inject ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
 @using IssaPortfolio.Library
 
 <br />
@@ -24,5 +26,7 @@
     {
         Console.WriteLine("Log me in!");
         await LocalStorage.SetItemAsync<string>("username", user.Username);
+        await AuthStateProvider.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("");
     }
 }

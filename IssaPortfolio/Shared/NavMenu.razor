@@ -1,4 +1,7 @@
-﻿<nav class="navbar navbar-expand-sm bg-dark navbar-dark text-danger">
+﻿@inject ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider AuthStateProvider
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark text-danger">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Issa Isabar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,9 +15,18 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">About me</a>
                 </li>
-                <li class="nav-item px-3">
-                    <a class="nav-link active" aria-current="page" href="Login">Login</a>
-                </li>
+                <AuthorizeView>
+                    <NotAuthorized>
+                        <NavLink class="nav-link" href="login">
+                            <span class="bi bi-box-arrow-in-right" aria-hidden="true">Login</span>
+                        </NavLink>
+                    </NotAuthorized>
+                    <Authorized>
+                        <a class="nav-link" @onclick="Logout" style="cursor: pointer">
+                            <span class="oi oi account-logout" aria-hidden="true">Logout</span>
+                        </a>
+                    </Authorized>
+                </AuthorizeView>
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -25,5 +37,9 @@
 </nav>
 
 @code {
-
+    private async void Logout()
+    {
+        await LocalStorage.RemoveItemAsync("username");
+        await AuthStateProvider.GetAuthenticationStateAsync();
+    }
 }
