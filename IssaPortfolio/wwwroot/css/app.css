@@ -1,17 +1,18 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-.nav {
-    color: red;
-}
-
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: Verdana, Verdana, Arial, sans-serif;
+    color: mintcream;
+    background-image: url('/Background_nature.jpg');
 }
-div.main{
-    background-color: red;
-    color: red;
+.navbar-nav > li {
+    padding-left: 30px;
+    padding-right: 30px;    
 }
-
+body {
+    min-height: 100%;
+    margin: 0;
+}
 
 .blackInput {
     background-color: dimgray;
