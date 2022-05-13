@@ -1,0 +1,21 @@
+﻿@page "/getuser"
+@using Microsoft.AspNetCore.Authorization
+ @inject AuthenticationStateProvider authProvider
+ @attribute [Authorize]
+    
+ <h3>GetUser</h3>
+    
+ <div>
+     Name = @Name
+ </div>
+    
+ @code {
+
+     private string Name;
+    
+     protected override async Task OnInitializedAsync()
+     {
+         AuthenticationState authState = await authProvider.GetAuthenticationStateAsync();
+         Name = authState.User.Identity.Name;
+     }
+ }

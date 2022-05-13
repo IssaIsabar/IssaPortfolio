@@ -10,8 +10,8 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     public class PortfolioItemController : ControllerBase
     {
-        private readonly IPortfolioService _portfolioService;
-        public PortfolioItemController(IPortfolioService portfolioService)
+        private readonly PortfolioService _portfolioService;
+        public PortfolioItemController(PortfolioService portfolioService)
         {
             _portfolioService = portfolioService;
         }

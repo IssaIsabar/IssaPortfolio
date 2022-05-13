@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Services.PortfolioService
 {
-    public class PortfolioService : IPortfolioService
+    public class PortfolioService
     {
         private readonly DataContext _context;
 

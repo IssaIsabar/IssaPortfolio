@@ -1,17 +1,9 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: Verdana, Verdana, Arial, sans-serif;
+    font-family: "Verdana", Verdana, Arial, sans-serif;
     color: mintcream;
     background-image: url('/Background_nature.jpg');
-}
-.navbar-nav > li {
-    padding-left: 30px;
-    padding-right: 30px;    
-}
-body {
-    min-height: 100%;
-    margin: 0;
 }
 
 .blackInput {

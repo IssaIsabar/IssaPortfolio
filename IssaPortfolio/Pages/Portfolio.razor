@@ -1,39 +1,42 @@
 ﻿@page "/portfolio"
-@inject IPortfolioService PortfolioService;
+@inject PortfolioService PortfolioService;
 @using IssaPortfolio.Library;
 <div class="mx-auto">
     <h1>Projects</h1>
     <br />
-    @*<input class="input" @bind="itemName" type="text" placeholder="Name of item: " />
-    <br />
-    <input class="input" @bind="description" type="text" placeholder="Description: " />
-    <br />
-    <input class="input" @bind="imageUrl" type="text" placeholder="Image url: " />
-    <br />
-    <input class="inputBox" type="button" value="Add" @onclick="async () =>
-    {
-    await PortfolioService.AddPortfolioItem(itemName, description, imageUrl);
-    itemName=string.Empty;
-    description=string.Empty;
-    imageUrl=string.Empty;
-    items = await PortfolioService.LoadPortfolioItems();
-    }" />*@
+    <input class="input" @bind="itemName" type="text" placeholder="Name of item: " />
+        <br />
+        <input class="input" @bind="description" type="text" placeholder="Description: " />
+        <br />
+        <input class="input" @bind="imageUrl" type="text" placeholder="Image url: " />
+        <br />
+        <input class="inputBox" type="button" value="Add" @onclick="async () =>
+        {
+        await PortfolioService.AddPortfolioItem(itemName, description, imageUrl);
+        itemName=string.Empty;
+        description=string.Empty;
+        imageUrl=string.Empty;
+        items = await PortfolioService.GetAll();
+        }" />
     <span>@message</span>
     <hr />
-    @foreach (var item in items)
+    @if (items is not null)
     {
-        <div class="card text-center" style="width: 18rem;">
-            <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name">
-            <div class="card-body">
-                <h5 class="card-title">@item.Name</h5>
-                <p class="card-text">@item.Description</p>
-                <input type="button" value="Delete" @onclick="async () =>
-            {
-            await PortfolioService.DeleteItem(item.Id);
-            items = await PortfolioService.LoadPortfolioItems();
-            }" />
+        @foreach (var item in items)
+        {
+            <div>
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">@item.Description</p>
+                    <input type="button" value="Delete" @onclick="async () => await PortfolioService.DeleteItem(item.Id)" />
             </div>
-        </div>
+        }
+
+    }
+    else
+    {
+        <p>
+            no items in list
+        </p>
     }
     <hr />
 </div>
@@ -45,6 +48,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        items = await PortfolioService.LoadPortfolioItems();
+        items = await PortfolioService.GetAll();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
     }
 }
