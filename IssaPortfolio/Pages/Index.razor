@@ -2,17 +2,18 @@
 @inject NavigationManager nav;
 
 <PageTitle>Issa's Portfolio</PageTitle>
-<div style="text-align: center; color: white;">
-    <br />
-    <h1 >Welcome to my portfolio</h1>
-    <br />
-    <br />
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <div class="container">
+        <div class="image">
+            <img src="/CV-Bild.jpg" alt="avatar" />
+        </div>
+        <div class="text">
+            <h1 class="text-left">Hello, I'm Issa Isabar</h1>
+            <p class="text-left">I am a 25 year old software developer who loves being creative and build fun stuff</p>
+            <a href="#" class="button" >About Me</a>
+        </div>
+    </div>
 </div>
-
-@if (name is not null)
-{
-    <span class="@className">Hello @name</span>
-}
 
 @code {
 
@@ -21,14 +22,6 @@
     string className = "blackStyle";
 
     string realName = "Issa";
-
-
-    //protected override void OnAfterRender(bool firstRender)
-    //{
-    //    nav.NavigateTo("/portfolio");
-
-    //    base.OnAfterRender(firstRender);
-    //}
 
     void Ok()
     {

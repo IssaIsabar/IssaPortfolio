@@ -1,45 +1,32 @@
 ﻿@page "/portfolio"
 @inject PortfolioService PortfolioService;
 @using IssaPortfolio.Library;
-<div class="mx-auto">
-    <h1>Projects</h1>
-    <br />
-    <input class="input" @bind="itemName" type="text" placeholder="Name of item: " />
-        <br />
-        <input class="input" @bind="description" type="text" placeholder="Description: " />
-        <br />
-        <input class="input" @bind="imageUrl" type="text" placeholder="Image url: " />
-        <br />
-        <input class="inputBox" type="button" value="Add" @onclick="async () =>
-        {
-        await PortfolioService.AddPortfolioItem(itemName, description, imageUrl);
-        itemName=string.Empty;
-        description=string.Empty;
-        imageUrl=string.Empty;
-        items = await PortfolioService.GetAll();
-        }" />
-    <span>@message</span>
-    <hr />
-    @if (items is not null)
-    {
-        @foreach (var item in items)
-        {
-            <div>
-                    <h5 class="card-title">@item.Name</h5>
-                    <p class="card-text">@item.Description</p>
-                    <input type="button" value="Delete" @onclick="async () => await PortfolioService.DeleteItem(item.Id)" />
-            </div>
-        }
 
-    }
-    else
-    {
-        <p>
-            no items in list
-        </p>
-    }
-    <hr />
-</div>
+@if (items is not null)
+{
+    <div id="portContainer" class="container">
+        <div class="row">
+            @foreach (var item in items)
+            {
+                <div class="card h-100" style="background-image: url(@item.ImageUrl)">
+                    <div class="card-content">
+                        <h2 class="card-title">@item.Name</h2>
+                        <p class="card-text">@item.Description</p>
+                        <a href="#" class="button">Read More</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <p>
+        no items in list
+    </p>
+}
+
+
 @code {
     List<PortfolioItem>? items = new List<PortfolioItem>();
 
