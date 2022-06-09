@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
 
         [HttpDelete]
         [Route("deletePortfolio/{id}")]
-        public async Task<IActionResult> DeletePortfolioItem([FromRoute] int id)
+        public async Task<IActionResult> DeletePortfolioItem([FromRoute] string id)
         {
             await _portfolioService.DeletePortfolioItem(id);
             return Ok();

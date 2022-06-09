@@ -1,0 +1,46 @@
+﻿@page "/Management"
+@inject PortfolioService PortfolioService;
+@using IssaPortfolio.Library;
+
+
+<section id="portfolioListGroup">
+    <div id="submitProject" class="submitProject">
+        <form>
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="text" @bind="itemName" class="form-control" id="itemName" placeholder="Name of project">
+                <input type="text" @bind="description" class="form-control" id="shortDescriptionPortfolio" placeholder="Short descritption">
+                <input type="text" @bind="imageUrl" class="form-control" id="imageUrl" placeholder="Image url">
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="@(async () => await PortfolioService.AddPortfolioItem(new PortfolioItem(itemName, description, imageUrl)))">Submit</button>
+        </form>
+    </div>
+
+    <ol class="list-group list-group-numbered">
+        @foreach (var item in items)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">@item.Name</div>
+                </div>
+                <button type="submit" class="btn btn-danger" onclick="@(async () => await PortfolioService.DeleteItem(item.Id))">Delete</button>
+            </li>
+        }
+    </ol>
+</section>
+@code {
+    List<PortfolioItem>? items = new List<PortfolioItem>();
+
+    string? itemName, description, imageUrl, message;
+    string defaultEmptyMessage = "Successful";
+
+    protected override async Task OnInitializedAsync()
+    {
+        items = await PortfolioService.GetAll();
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+    }
+
+}

@@ -152,7 +152,7 @@ html, body {
     left: calc(var(--padding) * -1);
     bottom: 0;
     width: calc(100% + var(--padding));
-    background: var(--clr-accent-400);
+    background: #0094ff;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 500ms ease;
@@ -167,12 +167,14 @@ html, body {
 
 .button {
     border-radius: 5%;
+    font-weight: bold;
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
     color: hsl(0, 0%, 100%);
     background-color: #0094ff;
     padding: 0.5em 1.25em;
+    margin: 0 10px 0 0;
 }
 
 .button:hover,
@@ -180,6 +182,12 @@ html, body {
     background-color: mintcream;
     color: black;
 }
+
+
+
+
+
+
 
 /*Contact Page*/
 .contactDiv {
@@ -200,13 +208,29 @@ html, body {
     color: white;
 }
 
+/*AboutMe*/
+.aboutMeDiv {
+    text-shadow: 1px 1px 8px black, 0 0 30px black, 0 0 30px black;
+    justify-content: center;
+    max-width: 100%;
+    min-width: 30%;
+}
+.aboutMeDiv h3 .aboutMeDiv p {
+    display: inline-block;
+    padding: 10px;
+}
 
 
-
-
-
-
-
+/*Management Site*/
+#portfolioListGroup{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    width: 30em;
+}
+#portfolioListGroup .input{
+    margin:0px;
+}
 
 
 

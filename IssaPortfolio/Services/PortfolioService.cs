@@ -70,7 +70,7 @@ namespace IssaPortfolio.Services.PortfolioService
                 }
             }
         }
-        public async Task DeleteItem(int id)
+        public async Task DeleteItem(string id)
         {
             var request = new HttpRequestMessage
             {

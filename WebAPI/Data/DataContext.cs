@@ -10,5 +10,7 @@ namespace WebAPI.Data
 
         }
         public DbSet<PortfolioItem>? PortfolioItems { get; set; }
+        public DbSet<PortfolioItemDetails>? PortfolioItemDetails { get; set; }
+        public DbSet<User>? Users { get; set; }
     }
 }
