@@ -12,7 +12,9 @@ html, body {
     background-size: cover;
     place-items: center;
 }
-
+ValidationMessage{
+    color: red;
+}
 
 
 
